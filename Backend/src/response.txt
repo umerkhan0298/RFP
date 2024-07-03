@@ -1,0 +1,255 @@
+## App Maisters Project Proposal Summary for RFP# CYF 24-05
+
+**Project Title:** Wellness and Prevention Mobile Application for Student Athletes
+
+**Technology Involved:**
+
+* **Mobile App Development:** Native iOS and Android development using Swift and Kotlin respectively.
+* **Backend Development:** Utilizing a robust cloud-based backend infrastructure (AWS, Azure, or GCP) with a suitable database (PostgreSQL, MongoDB, etc.) for data storage and management.
+* **API Integration:** Implementing secure APIs for data exchange between the mobile app and backend.
+* **User Interface/User Experience (UI/UX) Design:** Creating a user-friendly and engaging interface tailored for the target audience.
+* **Data Analytics:** Implementing data collection and reporting features to track user engagement and app impact.
+
+**Proposal Submission Deadline:** Thursday, June 27, 2024, by 2:00 PM Eastern Time
+
+**Budget Details:**
+
+* The budget will be determined based on the specific features and functionalities of the app, the chosen technology stack, and the development timeline.
+* We will provide a detailed cost breakdown in our proposal, including development costs, cloud infrastructure costs, and any potential customization costs.
+* We are open to discussing group discounts for multiple users.
+
+**Other Relevant Information:**
+
+* We will adhere to all State of Delaware requirements and regulations outlined in the RFP.
+* We will provide a comprehensive proposal that addresses all the requirements outlined in the RFP.
+* We are committed to delivering a high-quality mobile application that meets the needs of DSCYF and its student athletes.
+
+## Scope of Work (SOW)
+
+**Project Objectives:**
+
+* Develop a mobile application that promotes wellness and prevention initiatives for middle and high school student athletes in Delaware.
+* Align the app's content and features with the SPORT Prevention Plus Wellness curriculum.
+* Provide youth with access to resources and educational information related to mental and physical health, wellness, substance misuse prevention, and local/national support services.
+* Enable data collection and reporting to track user engagement and app impact.
+
+**Deliverables:**
+
+* A fully functional mobile application for iOS and Android platforms.
+* Comprehensive documentation for the app, including user manuals, technical specifications, and API documentation.
+* Data analytics reports demonstrating user engagement and app impact.
+
+**Tasks:**
+
+* **Requirement Gathering and Analysis:** Collaborate with DSCYF to understand their specific needs and requirements for the app.
+* **UI/UX Design:** Design a user-friendly and engaging interface tailored for the target audience.
+* **Mobile App Development:** Develop the app for iOS and Android platforms using Swift and Kotlin respectively.
+* **Backend Development:** Build a robust cloud-based backend infrastructure with a suitable database for data storage and management.
+* **API Integration:** Implement secure APIs for data exchange between the mobile app and backend.
+* **Data Analytics:** Implement data collection and reporting features to track user engagement and app impact.
+* **Testing and Quality Assurance:** Conduct thorough testing to ensure the app's functionality, performance, and security.
+* **Deployment and Maintenance:** Deploy the app to the App Store and Google Play Store and provide ongoing maintenance and support.
+
+**Timeline:**
+
+* The timeline will be determined based on the complexity of the app and the agreed-upon features.
+* We will provide a detailed project schedule with milestones and deadlines in our proposal.
+
+**Milestones:**
+
+* **Requirement Gathering and Analysis:** [Date]
+* **UI/UX Design Completion:** [Date]
+* **Alpha Version Release:** [Date]
+* **Beta Version Release:** [Date]
+* **App Launch:** [Date]
+
+**Technical Requirements:**
+
+* The app will be developed using native iOS and Android development frameworks.
+* The backend infrastructure will be hosted on a secure cloud platform (AWS, Azure, or GCP).
+* The app will be designed to be user-friendly and accessible to the target audience.
+* The app will be compliant with all relevant privacy and security regulations.
+
+**Budget:**
+
+* The budget will be determined based on the scope of work, the chosen technology stack, and the development timeline.
+* We will provide a detailed cost breakdown in our proposal.
+
+**Resources:**
+
+* A team of experienced mobile app developers, backend developers, UI/UX designers, and data analysts.
+* Access to the latest development tools and technologies.
+* Secure cloud infrastructure for hosting the app and backend.
+
+**Stakeholders:**
+
+* DSCYF
+* Student athletes
+* Coaches and athletic directors
+* Parents and guardians
+
+**Acceptance Criteria:**
+
+* The app will be deemed acceptable upon successful completion of all tasks and deliverables outlined in the SOW.
+* The app will meet all the requirements outlined in the RFP.
+* The app will be tested and approved by DSCYF before launch.
+
+## Our Understanding Document (OUD)
+
+**Project Background:**
+
+DSCYF is seeking a mobile application to support its wellness and prevention initiatives for student athletes in Delaware. The app should align with the SPORT Prevention Plus Wellness curriculum and provide youth with access to resources and educational information related to mental and physical health, wellness, substance misuse prevention, and local/national support services.
+
+**Objectives:**
+
+* Develop a mobile application that promotes wellness and prevention initiatives for middle and high school student athletes in Delaware.
+* Align the app's content and features with the SPORT Prevention Plus Wellness curriculum.
+* Provide youth with access to resources and educational information related to mental and physical health, wellness, substance misuse prevention, and local/national support services.
+* Enable data collection and reporting to track user engagement and app impact.
+
+**Scope:**
+
+The scope of the project includes the development, testing, deployment, and maintenance of a mobile application for iOS and Android platforms. The app will be designed to be user-friendly and accessible to the target audience. It will include features for tracking user progress, providing educational content, and connecting users with relevant resources.
+
+**Deliverables:**
+
+* A fully functional mobile application for iOS and Android platforms.
+* Comprehensive documentation for the app, including user manuals, technical specifications, and API documentation.
+* Data analytics reports demonstrating user engagement and app impact.
+
+**Timeline:**
+
+The timeline for the project will be determined based on the complexity of the app and the agreed-upon features. We will provide a detailed project schedule with milestones and deadlines in our proposal.
+
+**Key Assumptions:**
+
+* DSCYF will provide timely feedback and approval on design and development decisions.
+* DSCYF will provide access to relevant data and resources for the development of the app.
+* DSCYF will be responsible for marketing and promoting the app to its target audience.
+
+**Constraints:**
+
+* The project budget will be limited.
+* The development timeline will be constrained by the RFP deadline.
+* The app must be compliant with all relevant privacy and security regulations.
+
+**Risks:**
+
+* The project may be delayed due to unforeseen technical challenges.
+* The app may not be well-received by the target audience.
+* The app may not meet all of DSCYF's requirements.
+
+**Responsibilities:**
+
+* **App Maisters:** Responsible for the development, testing, deployment, and maintenance of the mobile application.
+* **DSCYF:** Responsible for providing requirements, feedback, and approval on the app's design and development.
+
+**Specific Requirements and Expectations:**
+
+* The app must be user-friendly and accessible to the target audience.
+* The app must be compliant with all relevant privacy and security regulations.
+* The app must be able to track user engagement and provide data analytics reports.
+* The app must be able to connect users with relevant resources.
+
+**Critical Review Document**
+
+**1. Is it a new app or an existing app?**
+* This is a request for a new mobile application.
+
+**2. Is this a federal, state, local, or school RFP?**
+* This is a state RFP for the State of Delaware.
+
+**3. Is this a small business or is 8a set aside?**
+* The RFP does not specify any small business or 8a set-aside requirements.
+
+**4. Is there agency preference for any IDIQ Contract Vehicle?**
+* The RFP does not mention any agency preference for IDIQ Contract Vehicles.
+
+**5. What is the high-level SOW/summary?**
+* DSCYF is seeking a mobile application to promote wellness and prevention initiatives for student athletes in Delaware. The app should align with the SPORT Prevention Plus Wellness curriculum and provide youth with access to resources and educational information related to mental and physical health, wellness, substance misuse prevention, and local/national support services.
+
+**6. Is it relevant to us and can we do this on our own?**
+* Yes, this project is relevant to App Maisters' expertise in mobile app development, AI, and backend development. We have the necessary resources and experience to complete this project successfully.
+
+**7. What government agency is this proposal for? Please name the agency.**
+* The proposal is for the Department of Services for Children, Youth and Their Families (DSCYF) in the State of Delaware.
+
+**8. What is the proposal submission deadline?**
+* The proposal submission deadline is Thursday, June 27, 2024, by 2:00 PM Eastern Time.
+
+**9. What are the requirements for submission? Please list all of them.**
+* The RFP outlines the following submission requirements:
+    * A written narrative describing how the proposed mobile app addresses the content areas described in the RFP.
+    * A Bidder Fact Sheet in MS Word format.
+    * Signed Assurances and signed Certification, Representation, and Acknowledgments document.
+    * Proposed costs per app user including any group discounts.
+    * Proposed customization costs, if any.
+    * Completed Employing Delawareans Report in MS Word format.
+
+**10. Are there any obvious show-stoppers?**
+* There are no obvious show-stoppers based on the information provided in the RFP.
+
+**11. Have we contacted the contracting officer? Who is he/she? Name/Email/Phone number?**
+* The RFP identifies H. Ryan Bolles as the DSCYF Procurement Administrator. Her contact information is:
+    * Email: herbert.bolles@Delaware.gov
+    * Phone: 302-633-2701 (voicemail only)
+
+**12. What is the length of the contract?**
+* The RFP states that DSCYF expects to make a one-time purchase but reserves the right for future purchases for up to five years. The contract is subject to annual funding reauthorization and is contingent upon satisfactory performance and available funding.
+
+**13. Do we have two weeks to work on this?**
+* The RFP does not specify a specific timeframe for proposal development. However, the deadline is less than two weeks away, so we need to prioritize this project.
+
+**14. Is there any company that’s already working with them (incumbent)? If there is, please name the company name and the website.**
+* The RFP does not mention any incumbent company.
+
+**15. Is the incumbent also bidding for this opportunity?**
+* The RFP does not mention any incumbent company bidding for this opportunity.
+
+**16. Is it a buy option (Off the shelf) or a build (Custom Development)?**
+* The RFP indicates that DSCYF is seeking a custom-developed mobile application.
+
+**17. Will the application be hosted on Cloud or on the client premise?**
+* The RFP does not specify the hosting requirements. However, it is likely that the app will be hosted on a cloud platform.
+
+**18. How many client references are required in the proposal and what should be their qualification?**
+* The RFP does not specify the number or qualification of client references required.
+
+**19. How do we submit the proposal? Email? Bid website? Sealed Proposal? (Add email, links, or address)? How many copies?**
+* The proposal must be submitted via email to DSCYF_Bids_Submission@delaware.gov. The RFP does not specify the number of copies required.
+
+**20. Is there a budget defined in the proposal? If yes, what is the budget or details for costing/pricing?**
+* The RFP does not define a specific budget. However, it requires bidders to provide proposed costs per app user including any group discounts and proposed customization costs.
+
+**21. Are there any compliances required for this opportunity?**
+* The RFP outlines several compliance requirements, including:
+    * Compliance with all licensing requirements of the State of Delaware.
+    * Compliance with all federal, state, and local laws, ordinances, codes, and regulations.
+    * Compliance with Title 19 Delaware Code Chapter 7 Section 711 regarding non-discrimination in employment practices.
+
+**22. Is there a pre-proposal conference date and link? Please provide the date and time for it.**
+* The RFP states that there is no bidders' conference scheduled.
+
+**23. Is the Q&A pre-proposal conference mandatory?**
+* The RFP does not mention any mandatory Q&A pre-proposal conference.
+
+**24. What is the questionnaire submission deadline?**
+* The RFP does not mention any questionnaire submission deadline.
+
+**25. Please attach Q&A responses for the opportunity.**
+* The RFP does not include any Q&A responses.
+
+**26. Is the information clear to the business analyst?**
+* The information provided in the RFP is clear and comprehensive.
+
+**27. Is there any requirement that has to be clarified from the agency by our BA?**
+* Our business analyst should clarify the following:
+    * The specific hosting requirements for the app.
+    * The number and qualification of client references required.
+    * Any specific requirements for data analytics reporting.
+
+**Conclusion:**
+
+App Maisters is well-positioned to develop a successful mobile application for DSCYF that meets their needs and objectives. We will provide a comprehensive proposal that addresses all the requirements outlined in the RFP and will work closely with DSCYF to ensure the app's success.
+
+**Please note:** This is a comprehensive summary based on the information provided in the RFP. We recommend that you review the RFP thoroughly and contact the contracting officer if you have any questions. 
