@@ -1,14 +1,14 @@
 from dotenv import load_dotenv
 import google.generativeai as genai
 import os
+from langchain_google_genai import ChatGoogleGenerativeAI
 from PyPDF2 import PdfReader
 from langchain.docstore.document import Document
 from langchain import PromptTemplate
 from langchain.chains.summarize import load_summarize_chain
+from langchain_core import chat_history
 from langchain.memory import ConversationBufferMemory
-from langchain_core.chat_history import InMemoryChatMessageHistory
-from langchain_google_genai import ChatGoogleGenerativeAI
-import pprint
+
 # Load environment variables
 load_dotenv()
 genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
@@ -24,9 +24,7 @@ for i, page in enumerate(pdfreader.pages):
         text += content
 
 docs = [Document(page_content=text)]
-combined_doc = "\n".join([doc.page_content for doc in docs])
 
-print(combined_doc)
 # Initialize the LLM
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-001", temperature=0)
 
@@ -38,10 +36,6 @@ Technology involved
 Proposal submission deadline
 Budget details
 Any other relevant information
-
-Also, please write Scope of work (SOW), ensuring to include detailed information on project objectives, deliverables, tasks, timeline, milestones, technical requirements, budget, resources, stakeholders, and acceptance criteria.
-
-Also, please write Our Understanding Document (OUD), ensuring to include detailed information on project background, objectives, scope, deliverables, timeline, key assumptions, constraints, risks, responsibilities of each party, and any specific requirements or expectations.
 
 Also, please write a detailed critical review document that addresses the following 27 questions related to the project proposal:
 
@@ -91,52 +85,46 @@ chain = load_summarize_chain(
     verbose=False
 )
 
-# Generate the summary
-summary = chain.invoke(docs)
-print("Summary of the document:")
-print(summary)
+# Generate the summary and review
+output_summary = chain.invoke(docs)
+print(output_summary['output_text'])
 
+# Write the summary and review to a file
+with open("response.txt", 'w') as file:
+    file.write(output_summary['output_text'])
 
-history = InMemoryChatMessageHistory()
+# Implement a conversation loop
+def conversation_loop():
+    while True:
+        user_query = input("Please enter your query: ")
+        if user_query.lower() in ['exit', 'quit']:
+            print("Ending conversation. Goodbye!")
+            break
 
+        # Create a follow-up prompt
+        follow_up_prompt = f"""
+        The user has the following query: {user_query}
+        
+        Based on the RFP document, provide a detailed response.
+        If any additional details from the document are needed, include them in the response.
+        """
+        
+        # follow_up_chain = load_summarize_chain(
+        #     llm=llm,
+        #     chain_type="stuff",
+        #     prompt=PromptTemplate(input_variables=['text'], template=follow_up_prompt),
+        #     verbose=False
+        # )
 
+        # Debug statement to check input
+        follow_up_doc = Document(page_content=text)
+        print("Follow-up doc:", follow_up_doc)
+        prompt=PromptTemplate(input_variables=['text'], template=follow_up_prompt)
+        follow_up_chain = prompt | llm
+        follow_up_response = follow_up_chain.invoke()
 
+        print(follow_up_response['output_text'])
 
-# Add the initial context-setting system message to the conversation history
-# system_message = (
-#     "system: You are a helpful assistant. All the following texts are from an RFP document. Your task is to provide answers based on this RFP document."
-# )
-# history.messages.append({"type": "system", "content": system_message})
-# Add the initial summary to the conversation history
-history.add_ai_message(combined_doc)
-
-# Add the initial context-setting message to the conversation history
-initial_message = (
-    "You are a helpful assistant. All the above texts are from an RFP document. Your task is to provide answers based on this RFP document."
-)
-history.add_user_message(initial_message)
-
-
-
-
-# Function to handle user queries
-def ask_bot(query):
-    history.add_user_message(query)
-    response = llm.invoke(history.messages)
-    history.add_ai_message(response)
-    return response
-
-# Example conversation
-print("Bot: How can I assist you further?")
-while True:
-    user_input = input("You: ")
-    if user_input.lower() in ["exit", "quit"]:
-        break
-    response = ask_bot(user_input)
-    print("Bot:", response.content)
-
-# Print chat history
-print("Chat History:")
-for message in history.messages:
-    print(f"{message.type}: {message.content}")
-# print(history.messages)s
+       
+# Start the conversation loop
+conversation_loop()

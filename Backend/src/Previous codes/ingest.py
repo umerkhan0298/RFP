@@ -31,9 +31,9 @@ def create_vector_db():
     end_time = time.time() - start_time
     print("1", end_time)
     print("documents", documents)
-    # text_splitter = RecursiveCharacterTextSplitter(chunk_size=500,
-    #                                                chunk_overlap=50)
-    # texts = text_splitter.split_documents(documents)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500,
+                                                   chunk_overlap=50)
+    texts = text_splitter.split_documents(documents)
     end_time1 = time.time() - end_time
     print("2", end_time1)
     print("text_splitter", texts)
