@@ -1,0 +1,182 @@
+from dotenv import load_dotenv
+import google.generativeai as genai
+import os
+from langchain_google_genai import ChatGoogleGenerativeAI
+import pdfkit
+import markdown
+from combined_chat import (initialize_chat_history, read_pdf, combined_prompt, 
+                           ask_bot, initial_prompt_for_rfp, prompt_for_QnA, 
+                           prompt_for_Additional_docs)
+
+# Load environment variables
+load_dotenv()
+genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+
+# def read_pdf(file_path):
+#     pdfreader = PdfReader(file_path)
+#     text = ''
+#     for page in pdfreader.pages:
+#         content = page.extract_text()
+#         if content:
+#             text += content
+#     docs = [Document(page_content=text)]
+#     combined_doc = "\n".join([doc.page_content for doc in docs])
+#     return combined_doc
+
+# def initialize_chat_history():
+#     history = InMemoryChatMessageHistory()
+#     initial_message = (
+#         "You are a helpful assistant. Your name is GPT Maisters. Your task is to provide the answer from the given document as per the user's prompt."
+#     )
+#     history.add_user_message(initial_message)
+#     return history
+
+# def combined_prompt(document_text, user_prompt):
+#     document_info = f"Document_Info: {document_text}"
+#     prompt = f"Prompt: {user_prompt}"
+#     user_input = f'{document_info}\n{prompt}'
+#     return user_input
+
+# def initial_prompt_for_rfp():
+#     prompt = '''
+#     You are a software company tasked with writing a comprehensive Scope of Work (SOW) document for a software development project based on the given RFP. 
+#     Give the response of user query accordingly.
+#     ''' 
+#     return prompt
+
+# def ask_bot(llm, history, query):
+#     history.add_user_message(query)    
+#     response = llm.invoke(history.messages)
+#     history.add_ai_message(response)
+#     return response, history
+
+def generate_pdf_from_response(response, output_num):
+    # Convert Markdown to HTML
+    html = markdown.markdown(response)
+
+    # Convert HTML to PDF
+    pdf = pdfkit.from_string(html, False)
+
+    # Save PDF to a file
+    with open(f"Output responses/output_{output_num}.pdf", "wb") as file:
+        file.write(pdf)
+
+def main():
+    history = initialize_chat_history()
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-001", temperature=0)
+    combined_doc = ""
+    QnA_doc = ""
+    additional_doc = ""
+
+    # Asking to upload the RFP 
+    while True:
+        try:
+            print("Bot: Welcome to GPT-Maisters! Kindly upload the RFP document.")
+            file_path = input("User: ").strip()
+            rfp_doc = read_pdf(file_path)
+            user_prompt = initial_prompt_for_rfp()
+            user_input = combined_prompt(rfp_doc, user_prompt)
+            print("Document uploaded successfully.")   
+            break
+        except: 
+            pass
+
+    # Asking to upload Q/A documents 
+
+    while True:
+        try:
+            print("Bot: Kindly upload the relevant Q/A documents or write next for the next step.")
+            file_path = input("User: ").strip()
+            if file_path == 'next':
+                break
+            else:
+                try:
+                    QnA_doc += read_pdf(file_path)
+                    print("Document uploaded successfully.")   
+                
+                except Exception as e:
+                    print(f"Failed to read the PDF document: {e}")
+        except:
+            pass
+    
+    if QnA_doc:
+        user_prompt = prompt_for_QnA()
+        user_input += combined_prompt(QnA_doc, user_prompt)    
+
+
+    # Asking to upload additional documents 
+
+    while True:
+        try:
+            print("Bot: Kindly upload the additional documents or write next for the next step.")
+            file_path = input("User: ").strip()
+            if file_path == 'next':
+                break
+            else:
+                try:
+                    additional_doc += read_pdf(file_path)
+                    print("Document uploaded successfully.")   
+                
+                except Exception as e:
+                    print(f"Failed to read the PDF document: {e}")
+        except:
+            pass
+    
+    if additional_doc:
+        user_prompt = prompt_for_Additional_docs()
+        user_input += combined_prompt(additional_doc, user_prompt)  
+
+    # print(user_input)
+    # response, history = ask_bot(llm, history, user_input)
+    # print("Bot:", response.content)
+    history.add_user_message(user_input)
+    output_num = 0
+    while True:
+        print("Bot: Enter 'upload' to upload a document, 'ask' to ask a prompt, 'generate' to generate the previous response or 'exit' to quit.")
+        action = input("User: ").strip().lower()
+        
+        # Uploading any document
+         
+        if action == 'upload':
+            print("Enter the file path of the PDF document.")
+            file_path = input("User: ").strip()
+            
+            try:
+                combined_doc += read_pdf(file_path)
+                print("Document uploaded successfully.")
+            
+            except Exception as e:
+                print(f"Failed to read the PDF document: {e}")
+
+
+        # asking user query
+
+        elif action == 'ask':
+            user_prompt = input("Enter your prompt: ").strip()
+            
+            if combined_doc:
+                user_input = combined_prompt(combined_doc, user_prompt)
+                combined_doc = []
+            
+            else:
+                user_input = user_prompt
+            response, history = ask_bot(llm, history, user_input)
+            print("Bot:", response.content)
+
+        # generating previous response
+
+        elif action == "generate":
+            generate_pdf_from_response(response.content, output_num)
+            print(f"PDF generated as output_{output_num}.pdf")
+            output_num += 1
+
+        # end the conversation
+
+        elif action == 'exit':
+            break
+
+        else:
+            print("Invalid action. Please enter 'upload', 'ask', or 'exit'.")
+
+if __name__ == "__main__":
+    main()

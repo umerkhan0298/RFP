@@ -99,8 +99,7 @@ def initialize_chat_history(combined_doc):
     return history
 
 def ask_bot(llm, history, query):
-    history.add_user_message(query)
-    
+    history.add_user_message(query)    
     response = llm.invoke(history.messages)
     history.add_ai_message(response)
     return response, history

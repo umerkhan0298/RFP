@@ -32,6 +32,12 @@ def initialize_chat_history():
     history.add_user_message(initial_message)
     return history
 
+def combined_prompt(document_text, user_prompt):
+    document_info = f"Document_Info: {document_text}"
+    prompt = f"Prompt: {user_prompt}"
+    user_input = f'{document_info}\n{prompt}'
+    return user_input
+
 def ask_bot(llm, history, query):
     history.add_user_message(query)    
     response = llm.invoke(history.messages)
@@ -50,23 +56,8 @@ def main():
     
     docs = [Document(page_content=text)]
     combined_doc = "\n".join([doc.page_content for doc in docs])
-
-    msg1 = combined_doc
-    # prompt = "Prompt: What's the deadline?"
-    # user_input = f'{msg}\n{prompt}'
-    # response, history = ask_bot(llm, history, user_input)
-    # print("Bot:", response.content)
-
     
-    file_path = 'D:\\Umer Data\\RFP\\Backend\\RFP document\\CRD_test_ques.pdf'
-    text = read_pdf(file_path)
-    
-    docs = [Document(page_content=text)]
-    combined_doc = "\n".join([doc.page_content for doc in docs])
-
-    msg = combined_doc
-    prompt = "Prompt: give all the answers of this questions"
-    user_input = f'{msg1}\n{msg}\n{prompt}'
+    user_input = combined_prompt(combined_doc, user_prompt)
     response, history = ask_bot(llm, history, user_input)
     print("Bot:", response.content)
     
