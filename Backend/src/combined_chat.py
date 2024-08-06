@@ -64,6 +64,22 @@ def prompt_for_Additional_docs():
     ''' 
     return prompt
 
+def functionality_of_functional_hierarchy(llm, history):
+    
+    ques = [
+    'can you specify which type of app this rfp wants is it web app, mobile app or any other or both',
+    'can you specify the user roles based on that app based on the rfp',
+    'Now based on that roles write a proper functional hierarchy of each roles, each hierarchy should contain sub sections and each sub sections should contain more sub sections and it should be detailed. Functional heirarchy of specific role might contains all the technicality like login, signup, logout functionality, all the dashboards and many more based on that role.',
+    'make it more technical and it should be look like all these information will be add in technical Scope of work containing all the detailed information of each functionality. Make sure the heading should be Functional Hierarchy of specific role and then all the info will be in that and then similarly for all the roles. Make sure the sub sections should contain detailed information and should contain all the functionality and requirements given in the RFP.',
+    'Now add a detailed, paragraphic description for each task and its corresponding subtasks until you reach the last subtask. Each description should be detailed and around 100 words or more if needed. Write the description in such a way that should be include in a Scope of Work. There would not be any heading of description, the description will lie under the corresponding heading of sub tasks. The description of last subtask should not be in points, it should be a paragraph.',
+    'There should be main headings of the functional hierarchy of specific roles and the functional details of specific roles (specific roles will contain names of all the major roles). The functional hierarchy will contain all the roles and will show the hierarchy and names of all the tasks and their subtasks where the functional details will contain the details of each sub tasks. Make sure do not miss any detail of sub task, if the subtask is written in hierarchy then its details should be there in functional details. The hierarchy of tasks should be like 1, 1.1, 1.1.1 in a proper hierarchichal markdown format'
+    ]
+    
+    for query in ques:
+        response, history = ask_bot(llm, history, query)
+
+    return response, history
+ 
 def ask_bot(llm, history, query):
     history.add_user_message(query)    
     response = llm.invoke(history.messages)
