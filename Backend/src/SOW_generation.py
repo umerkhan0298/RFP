@@ -6,50 +6,14 @@ import pdfkit
 import markdown
 from combined_chat import (initialize_chat_history, read_pdf, combined_prompt, 
                            ask_bot, initial_prompt_for_rfp, prompt_for_QnA, 
-                           prompt_for_Additional_docs, functionality_of_functional_hierarchy)
+                           prompt_for_Additional_docs, functionality_of_functional_hierarchy,
+                           functionality_of_non_functional, combine_responses, prompt_for_CRD)
 
 import time
 # Load environment variables
 load_dotenv()
 genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
 
-# def read_pdf(file_path):
-#     pdfreader = PdfReader(file_path)
-#     text = ''
-#     for page in pdfreader.pages:
-#         content = page.extract_text()
-#         if content:
-#             text += content
-#     docs = [Document(page_content=text)]
-#     combined_doc = "\n".join([doc.page_content for doc in docs])
-#     return combined_doc
-
-# def initialize_chat_history():
-#     history = InMemoryChatMessageHistory()
-#     initial_message = (
-#         "You are a helpful assistant. Your name is GPT Maisters. Your task is to provide the answer from the given document as per the user's prompt."
-#     )
-#     history.add_user_message(initial_message)
-#     return history
-
-# def combined_prompt(document_text, user_prompt):
-#     document_info = f"Document_Info: {document_text}"
-#     prompt = f"Prompt: {user_prompt}"
-#     user_input = f'{document_info}\n{prompt}'
-#     return user_input
-
-# def initial_prompt_for_rfp():
-#     prompt = '''
-#     You are a software company tasked with writing a comprehensive Scope of Work (SOW) document for a software development project based on the given RFP. 
-#     Give the response of user query accordingly.
-#     ''' 
-#     return prompt
-
-# def ask_bot(llm, history, query):
-#     history.add_user_message(query)    
-#     response = llm.invoke(history.messages)
-#     history.add_ai_message(response)
-#     return response, history
 
 def generate_pdf_from_response(response, output_num):
     # Convert Markdown to HTML
@@ -135,14 +99,62 @@ def main():
     # response, history = ask_bot(llm, history, user_input)
     # print("Bot:", response.content)
     history.add_user_message(user_input)
+    
     output_num = 0
     
     start_time = time.time()
 
-    response, history = functionality_of_functional_hierarchy(llm, history)
+    # response, history = functionality_of_functional_hierarchy(llm, history)
+    # print("Bot:", response.content)
+    # # print("history: ", list(history))
+    # functional_req_response = response.content
+    # print(time.time() - start_time)
+
+    # history = initialize_chat_history()
+    # history.add_user_message(user_input)
+
+
+    response, history = functionality_of_non_functional(llm, history)
     print("Bot:", response.content)
+    # print("history: ", list(history))
+    
+    print(time.time() - start_time)
+
+    ############### Temporary #############
+    
+    functional_req_response = read_pdf('D:\\Umer Data\\RFP\\Backend\\src\\Output responses\\D:\Umer Data\RFP\Backend\src\Output responses\Functional_hierarchy_markdown.pdf.pdf')
+    history.add_user_message(functional_req_response)
+
+    #######################################
+    
+    history.add_user_message(functional_req_response)
+
+    response, history = combine_responses(llm, history)
+    print("Bot:", response.content)
+    # print("history: ", list(history))
 
     print(time.time() - start_time)
+
+
+    # Asking to Generating CRD 
+
+    while True:
+        try:
+            print("Bot: Do you want to generate the CRD as well. Write 'yes' or 'no'.")
+            query = input("User: ").strip().lower()
+            # query = 'yes'
+            if query == 'no':
+                break
+            elif query == 'yes':
+                CRD_prompt = prompt_for_CRD() 
+                response, history = ask_bot(llm, history, CRD_prompt)
+            else:
+                pass
+        except:
+            pass
+    
+
+    # chatting functionality
 
     while True:
         print("Bot: Enter 'upload' to upload a document, 'ask' to ask a prompt, 'generate' to generate the previous response or 'exit' to quit.")
